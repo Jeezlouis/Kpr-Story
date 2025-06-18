@@ -1,0 +1,30 @@
+@import '@fontsource-variable/noto-sans-jp';
+@import '@fontsource-variable/noto-sans-tc';
+@import '@fontsource-variable/noto-sans-sc';
+
+@import "tailwindcss";
+
+
+@layer base {
+    @font-face {
+        font-family: 'Noto Sans JP Variable', sans-serif;
+        src: '@fontsource-variable/noto-sans-jp';
+    }
+    @font-face {
+        font-family: 'Noto Sans SC Variable', sans-serif;
+        src: '@fontsource-variable/noto-sans-sc';
+    }
+
+    @font-face {
+        font-family: 'Noto Sans TC Variable', sans-serif;
+        src: '@fontsource-variable/noto-sans-tc';
+    }
+
+}
+
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  background-color: #dfdff0;
+  font-family: 'Noto Sans JP Variable', sans-serif;
+}
