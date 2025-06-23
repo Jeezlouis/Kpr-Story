@@ -18,34 +18,25 @@ function Model(props) {
     
     const loadModel = async () => {
       try {
-        console.log('🔧 Starting KTX2 setup...')
-        
         // Create and configure KTX2 loader (only once)
         ktx2Loader = new KTX2Loader()
-        console.log('✅ KTX2Loader created')
         
         // Set transcoder path - adjust this to your actual path
         const transcoderPath = '/basis/'
         ktx2Loader.setTranscoderPath(transcoderPath)
-        console.log('📁 Transcoder path set to:', transcoderPath)
         
         // Detect support
         ktx2Loader.detectSupport(gl)
-        console.log('🔍 KTX2 support detection completed')
         
         // Create GLTF loader and set KTX2 loader
         const gltfLoader = new GLTFLoader()
         gltfLoader.setKTX2Loader(ktx2Loader)
-        console.log('🔗 KTX2Loader attached to GLTFLoader')
         
         // Load the model
-        console.log('📦 Loading GLTF model...')
         const gltf = await new Promise((resolve, reject) => {
           gltfLoader.load(
             'gltf/compressed/etc1s/landing/landing-2048.glb',
             (result) => {
-              console.log('✅ Model loaded successfully:', result)
-              
               // Extract nodes and materials like useGLTF does
               const nodes = {}
               const materials = {}
@@ -62,9 +53,6 @@ function Model(props) {
                 }
               })
               
-              console.log('🔍 Extracted nodes:', Object.keys(nodes))
-              console.log('🔍 Extracted materials:', Object.keys(materials))
-              
               // Add nodes and materials to the result
               result.nodes = nodes
               result.materials = materials
@@ -72,10 +60,9 @@ function Model(props) {
               resolve(result)
             },
             (progress) => {
-              console.log('📈 Loading progress:', progress)
+              // Progress callback - can be used for loading indicators
             },
             (error) => {
-              console.error('❌ Model loading failed:', error)
               reject(error)
             }
           )
@@ -84,11 +71,9 @@ function Model(props) {
         if (mounted) {
           setModelData(gltf)
           setLoading(false)
-          console.log('🎉 Model data set in state')
         }
         
       } catch (err) {
-        console.error('💥 Error in loadModel:', err)
         if (mounted) {
           setError(err.message)
           setLoading(false)
@@ -102,7 +87,6 @@ function Model(props) {
       mounted = false
       if (ktx2Loader) {
         ktx2Loader.dispose()
-        console.log('🧹 KTX2Loader disposed')
       }
     }
   }, [gl])
@@ -120,7 +104,6 @@ function Model(props) {
   }
 
   if (error) {
-    console.error('🚨 Rendering error state:', error)
     return (
       <mesh>
         <boxGeometry args={[1, 1, 1]} />
@@ -130,7 +113,6 @@ function Model(props) {
   }
 
   if (!modelData) {
-    console.warn('⚠️ No model data available')
     return null
   }
 

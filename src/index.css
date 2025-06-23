@@ -26,13 +26,21 @@ body {
   width: 100dvw;
   overflow-x: hidden;
   font-family: 'whyte';
+  scroll-behavior: smooth;
 }
 
 :root {
   --color-purple-50: #968adf;
   --color-purple-100: #8d82d2;
-  --color-gray-50: #f0f0f0;
+  --color-gray-100: rgb(240, 240, 240);
   --color-gray-500: #363636;
+}
+
+@theme {
+  --font-ibm: 'ibm', sans-serif;
+  --font-whyte: 'whyte', sans-serif;
+  --font-hexaframe: 'hexaframe', sans-serif;
+  --color-gray-25: rgba(240, 240, 240, 0.4);
 }
 
 @layer utilities {
@@ -42,22 +50,48 @@ body {
   .bg-purple-100 {
     background-color: var(--color-purple-100);
   }
-  .bg-gray-50 {
+  .bg-gray-100 {
     background-color: var(--color-gray-50);
   }
   .bg-gray-500 {
     background-color: var(--color-gray-500);
   }
+  .border-gray-100 {
+    border-color: var(--color-gray-50);
+  }
+  .border-gray-500 {
+    border-color: var(--color-gray-500);
+  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
-  .font-ibm {
-    font-family: 'ibm', sans-serif;
+  .clip-polygon {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 21.7% 100.1%, 0% 66.8%);
   }
-  .font-whyte {
-    font-family: 'whyte', sans-serif;
+}
+
+@utility flex-center {
+  
+    @apply flex items-center justify-center;
+}
+
+@layer components {
+
+nav{
+  @apply fixed z-50 h-[92.5dvh] w-[95dvw] flex justify-between;
+  ul{
+    @apply flex-center gap-5;
+    list-style: none;
+    }
+  /* div{
+    @apply 
+  } */
+  li{
+    @apply font-ibm text-white uppercase p-0;
   }
-  .font-hexaframe {
-    font-family: 'hexaframe', sans-serif;
-  }
+  a {
+      @apply cursor-pointer text-nowrap text-xs md:text-sm hover:bg-white hover:text-black;
+    }
+}
+
 }
