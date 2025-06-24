@@ -1,9 +1,11 @@
 import Hero from "./components/Hero"
-import { ScrollTrigger, SplitText, ScrambleTextPlugin } from "gsap/all"
+import { ScrollTrigger, SplitText } from "gsap/all"
+import TextPlugin from 'gsap/TextPlugin';
+import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 import gsap from "gsap"
 import Navbar from "./components/Navbar"
 
-gsap.registerPlugin(ScrollTrigger, SplitText , ScrambleTextPlugin)
+gsap.registerPlugin(ScrollTrigger, SplitText , ScrambleTextPlugin, TextPlugin)
 
 
 const App = () => {

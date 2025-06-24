@@ -9,7 +9,7 @@ const Hero = () => {
 
         </div>
         <div className="flex items-center justify-center w-full h-full absolute">
-          <div className="w-full h-full ">
+          <div className="relative w-screen h-screen overflow-hidden z-0">
             <ModelView />
           </div>
         </div>

@@ -21,6 +21,7 @@ const ModelView = () => {
     <Canvas
       style={{ width: '100%', height: '100%' }}
       shadows
+      className='absolute inset-0 z-0'
     >
 
       {/* <Environment preset="sunset" intensity={0.2} /> */}
