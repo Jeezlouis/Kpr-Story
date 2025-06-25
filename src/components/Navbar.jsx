@@ -1,8 +1,7 @@
+import gsap from 'gsap'
 import { navLinks } from '../constants/index.js'
 import { useRef, useEffect, useState  } from 'react'
-import gsap from 'gsap'
 import clsx from "clsx";
-
 
 
 
@@ -28,46 +27,59 @@ const Navbar = () => {
     }, [isAudioPlaying]);
 
     
-    const handleMouseEnter = (id, text) => {
-        const el = navRefs.current[id];
-        if (!el) return;
+    const handleMouseEnter = (id, fullText) => {
+    const el = navRefs.current[id];
+    if (!el) return;
 
-        gsap.to(el, {
-            duration: 1,
-            text: {
-            value: `${text}`, // ✦ makes it visibly different
-            scrambleText: {
-                characters: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                revealDelay: 0.4,
-                speed: 0.3
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const SCRAMBLE_ROUNDS = 12;
+
+    // create a timeline of quick random-text tweens
+    const tl = gsap.timeline();
+
+    for (let i = 0; i < SCRAMBLE_ROUNDS; i++) {
+        tl.to(el, {
+        duration: 0.03,
+        text: () => {
+            let scrambled = '';
+            for (let j = 0; j < fullText.length; j++) {
+            scrambled += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-            },
-            ease: 'power2.out'
+            return scrambled;
+        },
+        ease: 'none',
         });
-        };
+    }
+
+    // final tween to the real label
+    tl.to(el, {
+        duration: 0.2,
+        text: fullText,
+        ease: 'power1.out',
+    });
+    };
+
 
 
     const handleMouseLeave = (id, text) => {
-            gsap.to(navRefs.current[id], {
-                duration: 0.2,
-                text: {
-                value: text
-                },
-                ease: 'power2.out'
-            });
-            };
+        gsap.to(navRefs.current[id], {
+            duration: 0.2,
+            text: text,
+            ease: 'power1.inOut',
+        });
+        };
 
 
 
 
   return (
-    <div className='fixed inset-0 z-[9999] pointer-events-none'>
-        <div className='w-full px-6 pt-6 pointer-events-auto'>
-        <nav className='border-[0.5px] border-gray-25 overflow-hidden rounded-xl pointer-events-none'>
+    <div className='fixed top-0 left-0 w-full z-[9999] pointer-events-none'>
+        <div className='w-full pl-9 pr-7 pt-6  pointer-events-auto'>
+        <nav className='border-[0.5px] border-gray-25 overflow-hidden rounded-xl'>
             <div className='border-b-[0.5px] border-gray-25 flex justify-between items-center w-full h-12'>
 
             {/* Left Section (burger) */}
-           <div className="h-full z-20 flex items-center px-6 border border-transparent  pointer-events-auto hover:border-white transition-colors duration-300">
+           <div className="h-full z-20 flex  items-center px-6 border border-transparent  hover:border-white transition-colors duration-300">
             <button className="h-full flex items-center justify-center">
                 <svg fill="none" viewBox="0 0 27 6" className="icon-burger w-6 h-6">
                 <path d="M.867.711h25.634M.867 5.25h21.429" stroke="white" />
@@ -91,6 +103,7 @@ const Navbar = () => {
                             >
                                 {link.title}
                             </a>
+                     
                         </li>
                     ))}
                 </ul>
@@ -104,10 +117,10 @@ const Navbar = () => {
             </div>
 
             </div>
-            <div className="absolute h-full px-3 flex flex-col items-center border-r border-gray-25">
+            <div className="absolute inset-y-0 left-0 pointer-events-none px-3 flex flex-col items-center border-r border-gray-25">
 
                 <div className='mt-auto mb-auto'>
-                    <a href="/" rel="noopener noreferrer" className="event-pointer">
+                    <a href="/" rel="noopener noreferrer" className="pointer-events-auto mt-auto mb-auto">
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     fill="none" 
@@ -127,7 +140,7 @@ const Navbar = () => {
                 <div className='mb-6 '>
                      <button
                         onClick={toggleAudioIndicator}
-                        className=" flex items-center space-x-0.5 poi"
+                        className="pointer-events-auto mb-6 flex items-center space-x-0.5"
                         >
                         <audio
                             ref={audioElementRef}

@@ -20,6 +20,11 @@
   src: url("/fonts/HexaframeCF-Bold.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: 'abcwhyteplus';
+  src: url("/fonts/ABCWhytePlusVariable-wght699.ttf") format("truetype");
+}
+
 
 
 body {
@@ -27,8 +32,11 @@ body {
   overflow-x: hidden;
   font-family: 'whyte';
   scroll-behavior: smooth;
+  color: #fff;
 }
-
+html {
+   -webkit-font-smoothing: antialiased;
+}
 :root {
   --color-purple-50: #968adf;
   --color-purple-100: #8d82d2;
@@ -38,6 +46,7 @@ body {
 
 @theme {
   --font-ibm: 'ibm', sans-serif;
+  --font-abcwhyteplus: 'abcwhyteplus', sans-serif;
   --font-whyte: 'whyte', sans-serif;
   --font-hexaframe: 'hexaframe', sans-serif;
   --color-gray-25: rgba(240, 240, 240, 0.4);
@@ -87,6 +96,10 @@ body {
   .bg-hover:hover::before {
     width: 100%;
   }
+
+  h1 {
+    font-weight: 800;
+  }
   .indicator-line {
     @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
   }
@@ -120,7 +133,7 @@ body {
 @layer components {
 
 nav{
-  @apply fixed z-50 h-[92.5dvh] w-[95dvw] flex justify-between;
+  @apply fixed h-[92.5dvh] w-[95dvw] flex justify-between;
   ul{
     @apply flex-center gap-5;
     list-style: none;
