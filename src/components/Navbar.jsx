@@ -73,9 +73,9 @@ const Navbar = () => {
 
 
   return (
-    <div className='fixed top-0 left-0 w-full z-[9999] pointer-events-none'>
-        <div className='w-full pl-9 pr-7 pt-6  pointer-events-auto'>
-        <nav className='border-[0.5px] border-gray-25 overflow-hidden rounded-xl'>
+    <div className='relative top-0 left-0 w-full '>
+        <div className='w-full pl-9 pr-7 pt-6 absolute pointer-events-none'>
+        <nav className='border-[0.5px] border-gray-25 overflow-hidden rounded-xl fixed z-50 pointer-events-auto'>
             <div className='border-b-[0.5px] border-gray-25 flex justify-between items-center w-full h-12'>
 
             {/* Left Section (burger) */}

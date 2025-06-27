@@ -3,10 +3,12 @@ import { ScrollTrigger, SplitText } from "gsap/all"
 import TextPlugin from 'gsap/TextPlugin';
 import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 import gsap from "gsap"
+import { useGSAP } from '@gsap/react';
 import Navbar from "./components/Navbar"
 import About from "./components/About";
 
-gsap.registerPlugin(ScrollTrigger, SplitText , ScrambleTextPlugin, TextPlugin)
+
+gsap.registerPlugin(ScrollTrigger, SplitText , ScrambleTextPlugin, TextPlugin, useGSAP);
 
 
 const App = () => {

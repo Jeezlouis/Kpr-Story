@@ -24,12 +24,10 @@ export default function ScrambleTest() {
   };
 
   return (
-    <div className="text-white relative text-2xl p-10 bg-black min-h-screen flex items-center justify-center">
+    <div className="text-white absolute text-2xl p-10 bg-black min-h-screen w-full flex items-center justify-center">
       <a
         ref={el}
-        onMouseEnter={() => {
-            console.log("Mouse entered");
-        }}
+        onMouseEnter={handleHover}
         className="cursor-pointer pointer-events-auto"
       >
         Hover me
