@@ -45,7 +45,7 @@ const ModelView = () => {
       {/* Controls for interaction */}
       <OrbitControls 
       ref={ controlsRef }
-      enableZoom={true}
+      enableZoom={false}
       enablePan={false}
       enableRotate={false}
       minDistance={0.01}

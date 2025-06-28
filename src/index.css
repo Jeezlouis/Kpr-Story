@@ -98,7 +98,21 @@ html {
   }
 
   h1 {
-    font-weight: 800;
+    font-weight: 700;
+  }
+  #hero .sub {
+    font-family: ibm !important;
+    font-size: 0.7rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    line-height: .9rem !important;
+    left: -1.8% !important;
+    position: absolute !important;
+    text-transform: uppercase !important;
+    top: -.2rem !important;
+}
+  #hero .dot {
+    left: 0 !important;
   }
   .indicator-line {
     @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;

@@ -73,14 +73,14 @@ const Navbar = () => {
 
 
   return (
-    <div className='relative top-0 left-0 w-full '>
-        <div className='w-full pl-9 pr-7 pt-6 absolute pointer-events-none'>
-        <nav className='border-[0.5px] border-gray-25 overflow-hidden rounded-xl fixed z-50 pointer-events-auto'>
-            <div className='border-b-[0.5px] border-gray-25 flex justify-between items-center w-full h-12'>
+    <div className='relative top-0 left-0 w-full  pointer-events-none'>
+        <div className='w-full pl-9 pr-7 absolute pt-6 overflow-visible'>
+        <nav className='border-[0.5px] border-gray-25 fixed overflow-hidden rounded-xl z-50 pointer-events-none'>
+            <div className='border-b-[0.5px] border-gray-25 flex relative justify-between items-center w-full h-12 pointer-events-auto'>
 
             {/* Left Section (burger) */}
-           <div className="h-full z-20 flex  items-center px-6 border border-transparent  hover:border-white transition-colors duration-300">
-            <button className="h-full flex items-center justify-center">
+           <div className="h-full z-20 flex relative  items-center px-6 border border-transparent  hover:border-white transition-colors duration-300">
+            <button className="h-full flex items-center relative justify-center pointer-events-auto">
                 <svg fill="none" viewBox="0 0 27 6" className="icon-burger w-6 h-6">
                 <path d="M.867.711h25.634M.867 5.25h21.429" stroke="white" />
                 </svg>
@@ -90,7 +90,7 @@ const Navbar = () => {
 
 
             {/* Center Section */}
-            <div className='flex-center flex-1 py-5'>
+            <div className='flex-center flex-1 py-5  relative'>
                 <ul>
                     {navLinks.map((link) => (
                         <li key={link.id}>
@@ -110,7 +110,7 @@ const Navbar = () => {
             </div>
 
             {/* Right Placeholder */}
-            <div className='flex-center cursor-pointer py-3 bg-white text-black px-8 clip-polygon rounded-lg'>
+            <div className='flex-center cursor-pointer py-3 bg-white text-black px-8 relative clip-polygon rounded-lg'>
                 <button className='uppercase cursor-pointer font-ibm font-semibold'>
                     sign in
                 </button>
@@ -120,7 +120,7 @@ const Navbar = () => {
             <div className="absolute inset-y-0 left-0 pointer-events-none px-3 flex flex-col items-center border-r border-gray-25">
 
                 <div className='mt-auto mb-auto'>
-                    <a href="/" rel="noopener noreferrer" className="pointer-events-auto mt-auto mb-auto">
+                    <a href="/" rel="noopener noreferrer" className="pointer-events-none mt-auto mb-auto">
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     fill="none" 
@@ -137,7 +137,7 @@ const Navbar = () => {
                     </svg>
                     </a>
                 </div>
-                <div className='mb-6 '>
+                <div className='mb-6'>
                      <button
                         onClick={toggleAudioIndicator}
                         className="pointer-events-auto mb-6 flex items-center space-x-0.5"
