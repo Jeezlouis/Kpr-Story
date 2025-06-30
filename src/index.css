@@ -27,6 +27,8 @@
 
 
 
+
+
 body {
   width: 100dvw;
   overflow-x: hidden;
@@ -50,6 +52,7 @@ html {
   --font-whyte: 'whyte', sans-serif;
   --font-hexaframe: 'hexaframe', sans-serif;
   --color-gray-25: rgba(240, 240, 240, 0.4);
+  --color-green-50: #9AFF46;
 }
 
 @layer utilities {
@@ -95,6 +98,10 @@ html {
   }
   .bg-hover:hover::before {
     width: 100%;
+  }
+  .model-path {
+    clip-path: polygon(4.8% -0.2%, 100% 0%, 100.2% 81.8%, 78% 100.8%, 0% 100%, 0.15% 60.45%, 4.5% 54.9%);
+    border-radius: 0.5rem;
   }
 
   h1 {

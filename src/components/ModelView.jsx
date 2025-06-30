@@ -21,7 +21,7 @@ const ModelView = () => {
     <Canvas
       style={{ width: '100%', height: '100%' }}
       shadows
-      className='absolute inset-0  pointer-events-none'
+      className='absolute inset-0 pointer-events-auto'
     >
 
       {/* <Environment preset="sunset" intensity={0.2} /> */}
@@ -34,8 +34,8 @@ const ModelView = () => {
       />
       {/* <pointLight position={[-10, -10, -10]} intensity={0.5} /> */}
         <PerspectiveCamera
-        position={[0, 0, 0.9]}
-        fov={45}
+        position={[0, -0.3, 0.9]}
+        fov={28}
         near={0.05}
         far={1000}
         makeDefault
@@ -51,7 +51,7 @@ const ModelView = () => {
       minDistance={0.01}
       maxDistance={10}
       position0={[0, 3, 5]}
-      target={[0, 0, 0]}
+      target={[0, 0.2, 0]}
       />
       
       {/* Model with loading fallback */}

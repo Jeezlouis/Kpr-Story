@@ -119,7 +119,7 @@ function Model(props) {
   const { nodes, materials } = modelData
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null} rotation={[0.5, 0, 0]}>
       <group name="Scene">
         <group name="Camera_Target" />
         <group name="CAMERA_export" position={[0, 0, 3]} rotation={[Math.PI / 2, 0, 0]}>

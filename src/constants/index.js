@@ -18,6 +18,56 @@ const navLinks = [
 
 ]
 
+ const menuItems = [
+        { 
+            id: 'story', 
+            title: 'STORY', 
+            highlight: true, 
+            pageNum: 'PAGE\n001'
+
+         },
+        { 
+            id: 'protocol', 
+            title: 'PROTOCOL'
+
+         },
+        { 
+            id: 'journal', 
+            title: 'JOURNAL'
+
+         },
+        { 
+            id: 'media', 
+            title: 'MEDIA'
+
+         },
+        { 
+            id: 'gallery', 
+            title: 'GALLERY'
+
+         },
+        { 
+            id: 'about', 
+            title: 'ABOUT'
+
+         }
+    ];
+
+ const socialLinks = [
+        { 
+            id: 'twitter', 
+            title: 'TWITTER'
+
+         },
+        { 
+            id: 'discord', 
+            title: 'DISCORD'
+
+         }
+    ];
+
 export { 
-    navLinks
+    navLinks,
+    menuItems,
+    socialLinks
 }

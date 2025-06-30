@@ -9,6 +9,35 @@ import { ScrollTrigger, SplitText } from "gsap/all"
 
 const Hero = () => {
   const heroRef = useRef()
+  const modelRef = useRef()
+  
+  
+  const handleMouseMove = (e) => {
+
+    const { left, right, top, bottom } = 
+        modelRef.current.getBoundingClientRect();
+
+        const relativeX = (e.clientX - left) / width
+        const relativeY = (e.clientY - top) / height;
+
+        const tiltX = (relativeX - 0.5) * 5;
+        const tiltY = (relativeY - 0.5) * 5;
+
+        gsap.to(modelRef.current.rotation, {
+          x: tiltY,
+          y: tiltX,
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      }
+ const handleMouseLeave = () => {
+    gsap.to(modelRef.current.rotation, {
+      x: 0,
+      y: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  }
   const scText = 'KPR is a brand that focuses on collective narrative and empowering storytellers. Keepers is a living story, an uncharted world waiting to be explored, to be imagined.'
   useGSAP(() => {
     const heroSplit = new SplitText("#hero h1", {
@@ -37,11 +66,11 @@ const Hero = () => {
 
   }, { scope: heroRef })
   return (
-    <div id="hero" ref={heroRef} className='h-screen w-dvw flex items-center justify-center '>
-        <div className="h-screen w-screen z-1 flex-col pointer-events-none">
+    <div id="hero" ref={heroRef} className='h-screen w-dvw flex items-center justify-center'>
+        <div className="h-screen w-screen z-1 flex-col pointer-events-auto">
           <div className="pointer-events-auto visible opacity-[1]">
             
-          <div id="intro-text" className="absolute font-whyte mt-24 ml-35 w-64 h-16 text-xs font-normal overflow-hidden">
+          <div id="intro-text" className="absolute font-whyte mt-24  ml-35 w-64 h-16 text-xs font-normal overflow-hidden">
             KPR is a brand that focuses on collective narrative and empowering storytellers. Keepers is a living story, an uncharted world waiting to be explored, to be imagined.
           </div>
           <div id="hero-headers" className="absolute top-90 left-39 w-[90rem] h-[50rem] flex-col ">
@@ -53,7 +82,11 @@ const Hero = () => {
         </div>
         </div>
         <div className="flex items-center justify-center w-full h-full">
-          <div className="top-0 left-0 w-screen h-screen fixed pointer-events-none overflow-hidden ">
+          <div 
+          ref={modelRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className=" top-0 left-0 w-screen h-screen fixed pointer-events-auto overflow-hidden ">
             <ModelView />
           </div>
         </div>

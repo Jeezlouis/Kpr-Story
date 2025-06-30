@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import clsx from "clsx";
+import { navLinks, menuItems, socialLinks } from '../constants/index.js'
 
 const Navbar = () => {
     const navRefs = useRef({});
@@ -12,40 +13,41 @@ const Navbar = () => {
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Original nav links
-    const navLinks = [
-        {
-            id: 'project',
-            title: 'project',
-        },
-        {
-            id: 'the-keep',
-            title: 'the keep'
-        },
-        {
-            id: 'factions',
-            title: 'factions'
-        },
-        {
-            id: 'the-world',
-            title: 'the world'
-        },
-    ];
+    {/* Datalinks should exist in constants folder only */}
+    // // Original nav links
+    // const navLinks = [
+    //     {
+    //         id: 'project',
+    //         title: 'project',
+    //     },
+    //     {
+    //         id: 'the-keep',
+    //         title: 'the keep'
+    //     },
+    //     {
+    //         id: 'factions',
+    //         title: 'factions'
+    //     },
+    //     {
+    //         id: 'the-world',
+    //         title: 'the world'
+    //     },
+    // ];
 
-    // Menu items matching the exact design
-    const menuItems = [
-        { id: 'story', title: 'STORY', highlight: true, pageNum: 'PAGE\n001' },
-        { id: 'protocol', title: 'PROTOCOL' },
-        { id: 'journal', title: 'JOURNAL' },
-        { id: 'media', title: 'MEDIA' },
-        { id: 'gallery', title: 'GALLERY' },
-        { id: 'about', title: 'ABOUT' }
-    ];
+    // // Menu items matching the exact design
+    // const menuItems = [
+    //     { id: 'story', title: 'STORY', highlight: true, pageNum: 'PAGE\n001' },
+    //     { id: 'protocol', title: 'PROTOCOL' },
+    //     { id: 'journal', title: 'JOURNAL' },
+    //     { id: 'media', title: 'MEDIA' },
+    //     { id: 'gallery', title: 'GALLERY' },
+    //     { id: 'about', title: 'ABOUT' }
+    // ];
 
-    const socialLinks = [
-        { id: 'twitter', title: 'TWITTER' },
-        { id: 'discord', title: 'DISCORD' }
-    ];
+    // const socialLinks = [
+    //     { id: 'twitter', title: 'TWITTER' },
+    //     { id: 'discord', title: 'DISCORD' }
+    // ];
 
     // Toggle audio and visual indicator
     const toggleAudioIndicator = () => {
@@ -133,33 +135,40 @@ const Navbar = () => {
         }
     }, [isMenuOpen]);
 
-    const handleMouseEnter = (id, text) => {
-        const el = navRefs.current[id];
-        if (!el) return;
+        const setRef = (group, key, el) => {
+        if (!refs.current[group]) refs.current[group] = {};
+        refs.current[group][key] = el;
+        };
 
-        gsap.to(el, {
-            duration: 1,
-            text: {
-                value: `${text}`,
-                scrambleText: {
-                    characters: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                    revealDelay: 0.4,
-                    speed: 0.3
-                }
-            },
-            ease: 'power2.out'
-        });
+    const handleMouseEnter = (el, text) => {
+    if (!el) return;
+
+    gsap.to(el, {
+        duration: 1,
+        ease: "expo.out",
+        scrambleText: {
+        text: `${text}`,
+        chars: "abcdefghijklmnopqrstuvwxyz0123456789",
+        revealDelay: 0.3,
+        speed: 0.3,
+        rightToLeft: false,
+        }
+    });
     };
 
-    const handleMouseLeave = (id, text) => {
-        gsap.to(navRefs.current[id], {
-            duration: 0.2,
-            text: {
-                value: text
-            },
-            ease: 'power2.out'
-        });
+    const handleMouseLeave = (el, text) => {
+    if (!el) return;
+
+    gsap.to(el, {
+        duration: 0.2,
+        text: {
+        value: text
+        },
+        ease: 'expo.out'
+    });
     };
+
+
 
     return (
         <>
@@ -211,11 +220,12 @@ const Navbar = () => {
                         >
                             <a
                                 href={`#${item.id}`}
+                                
                                 className={clsx(
                                     "block font-bold leading-none transition-colors duration-300 uppercase tracking-tight",
                                     item.highlight 
-                                        ? "text-[#9AFF46]" 
-                                        : "text-white hover:text-[#9AFF46]"
+                                        ? "text-black bg-green-50" 
+                                        : "text-white hover:bg-white hover:text-black"
                                 )}
                                 style={{ 
                                     fontSize: '3.5rem',
@@ -229,7 +239,7 @@ const Navbar = () => {
                             </a>
                             {item.pageNum && (
                                 <div 
-                                    className="absolute right-0 top-0 text-[#9AFF46] text-[10px] leading-tight font-mono uppercase tracking-wide"
+                                    className="absolute right-0 top-0 text-green-50 text-[10px] leading-tight font-mono uppercase tracking-wide"
                                     style={{ 
                                         transform: 'translateY(-10px)',
                                         whiteSpace: 'pre-line'
@@ -255,7 +265,7 @@ const Navbar = () => {
                                 <a
                                     key={link.id}
                                     href="#"
-                                    className="block text-white hover:text-[#9AFF46] transition-colors text-sm uppercase font-medium tracking-wide"
+                                    className="block text-white hover:text-green-50 transition-colors text-sm uppercase font-medium tracking-wide"
                                 >
                                     {link.title}
                                 </a>
@@ -272,7 +282,7 @@ const Navbar = () => {
                         <div className="ml-4">
                             <a
                                 href="#"
-                                className="flex items-center space-x-2 text-white hover:text-[#9AFF46] transition-colors text-sm uppercase font-medium tracking-wide"
+                                className="flex items-center space-x-2 text-white hover:text-green-50 transition-colors text-sm uppercase font-medium tracking-wide"
                             >
                                 <span>↓</span>
                                 <span>OPENSEA</span>
@@ -335,8 +345,8 @@ const Navbar = () => {
                                             <a
                                                 href={`#${link.id}`}
                                                 ref={(el) => (navRefs.current[link.id] = el)}
-                                                onMouseEnter={() => handleMouseEnter(link.id, link.title)}
-                                                onMouseLeave={() => handleMouseLeave(link.id, link.title)}
+                                                onMouseEnter={() => handleMouseEnter(navRefs.current[link.id], link.title)}
+                                                onMouseLeave={() => handleMouseLeave(navRefs.current[link.id], link.title)}
                                                 className='bg-hover transition-all duration-300 ease-in-out pointer-events-auto'
                                             >
                                                 {link.title}
