@@ -149,9 +149,15 @@ const Hero = () => {
       ease: "expo.out",
       stagger: 0.02,
       alpha: 0,
+<<<<<<< HEAD
     }, 1.5)
     
     .to('#intro-text', {
+=======
+    })
+
+    gsap.to('#intro-text', {
+>>>>>>> e3ef5698cd1fce204175dfa03e978d3681d533f6
       duration: scText.length * 0.03,
       ease: "expo.out",
       scrambleText: {
@@ -161,6 +167,7 @@ const Hero = () => {
         speed: 0.3,
         rightToLeft: false,
       }
+<<<<<<< HEAD
     }, 2)
 
   }, { scope: heroRef })
@@ -169,6 +176,16 @@ const Hero = () => {
     <div id="hero" ref={heroRef} className='h-screen w-dvw flex-center overflow-hidden z-10'>
         <div id="hero-header" className="h-screen w-screen z-1 flex-col relative pointer-events-none cursor-default">
           <div className="relative visible opacity-[1]">
+=======
+      
+    })
+
+  }, { scope: heroRef })
+  return (
+    <div id="hero" ref={heroRef} className='h-screen w-dvw flex items-center justify-center'>
+        <div className="h-screen w-screen z-1 flex-col pointer-events-auto">
+          <div className="pointer-events-auto visible opacity-[1]">
+>>>>>>> e3ef5698cd1fce204175dfa03e978d3681d533f6
             
           <div id="intro-text" className="absolute font-whyte mt-24  ml-35 w-64 h-16 text-xs font-normal overflow-hidden">
             KPR is a brand that focuses on collective narrative and empowering storytellers. Keepers is a living story, an uncharted world waiting to be explored, to be imagined.
@@ -181,6 +198,7 @@ const Hero = () => {
           
         </div>
         </div>
+<<<<<<< HEAD
         <div className="fixed inset-0 flex items-center justify-center w-full h-full">
           <div 
           onMouseMove={handleMouseMove}
@@ -194,6 +212,15 @@ const Hero = () => {
               cameraRef={internalCameraRef} 
               onModelReady={() => setModelReady(true)}
             />
+=======
+        <div className="flex items-center justify-center w-full h-full">
+          <div 
+          ref={modelRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className=" top-0 left-0 w-screen h-screen fixed pointer-events-auto overflow-hidden ">
+            <ModelView />
+>>>>>>> e3ef5698cd1fce204175dfa03e978d3681d533f6
           </div>
         </div>
     </div>

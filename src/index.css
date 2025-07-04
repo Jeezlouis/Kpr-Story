@@ -27,10 +27,13 @@
 
 
 
+<<<<<<< HEAD
 html, body, #root {
   height: 100%;
   margin: 0;
 }
+=======
+>>>>>>> e3ef5698cd1fce204175dfa03e978d3681d533f6
 
 
 body {
@@ -152,6 +155,7 @@ html {
       transform: translateY(-0px);
     }
   }
+<<<<<<< HEAD
   .fade-loader {
     animation: fadeOut 0.5s ease forwards;
     animation-delay: 1.2s;
@@ -163,6 +167,8 @@ html {
     }
   }
 
+=======
+>>>>>>> e3ef5698cd1fce204175dfa03e978d3681d533f6
 }
 
 @utility flex-center {
