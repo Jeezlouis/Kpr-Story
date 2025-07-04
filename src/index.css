@@ -1,0 +1,192 @@
+@import '@fontsource-variable/noto-sans-jp';
+@import '@fontsource-variable/noto-sans-tc';
+@import '@fontsource-variable/noto-sans-sc';
+
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: 'ibm';
+  src: url("/fonts/IBMPlexMono.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'whyte';
+  src: url("/fonts/ABCWhytePlus.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'hexaframe';
+  src: url("/fonts/HexaframeCF-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'abcwhyteplus';
+  src: url("/fonts/ABCWhytePlusVariable-wght699.ttf") format("truetype");
+}
+
+
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  font-family: 'whyte';
+  scroll-behavior: smooth;
+  color: #fff;
+}
+html {
+   -webkit-font-smoothing: antialiased;
+}
+:root {
+  --color-purple-50: #968adf;
+  --color-purple-100: #8d82d2;
+  --color-gray-100: rgb(240, 240, 240);
+  --color-gray-500: #363636;
+}
+
+@theme {
+  --font-ibm: 'ibm', sans-serif;
+  --font-abcwhyteplus: 'abcwhyteplus', sans-serif;
+  --font-whyte: 'whyte', sans-serif;
+  --font-hexaframe: 'hexaframe', sans-serif;
+  --color-gray-25: rgba(240, 240, 240, 0.4);
+  --color-green-50: #9AFF46;
+}
+
+@layer utilities {
+  .bg-purple-50 {
+    background-color: var(--color-purple-50);
+  }
+  .bg-purple-100 {
+    background-color: var(--color-purple-100);
+  }
+  .bg-gray-100 {
+    background-color: var(--color-gray-50);
+  }
+  .bg-gray-500 {
+    background-color: var(--color-gray-500);
+  }
+  .border-gray-100 {
+    border-color: var(--color-gray-50);
+  }
+  .border-gray-500 {
+    border-color: var(--color-gray-500);
+  }
+  .text-gray-500 {
+    color: var(--color-gray-500);
+  }
+  .clip-polygon {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 21.7% 100.1%, 0% 66.8%);
+  }
+  .bg-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  .bg-hover::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background-color: white;
+    z-index: -1;
+    transition: width 0.4s ease-in-out;
+
+  }
+  .bg-hover:hover::before {
+    width: 100%;
+  }
+  .model-path {
+    clip-path: polygon(4.8% -0.2%, 100% 0%, 100.2% 81.8%, 78% 100.8%, 0% 100%, 0.15% 60.45%, 4.5% 54.9%);
+    border-radius: 40%, 40%, 40%, 40%, 40%, 40%, 40%;
+  }
+  #model {
+    transform-style: preserve-3d;
+    will-change: transform;
+  } 
+
+  h1 {
+    font-weight: 700;
+  }
+  #hero .sub {
+    font-family: ibm !important;
+    font-size: 0.7rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    line-height: .9rem !important;
+    left: -1.8% !important;
+    position: absolute !important;
+    text-transform: uppercase !important;
+    top: -.2rem !important;
+}
+  #hero .dot {
+    left: 0 !important;
+  }
+  .indicator-line {
+    @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
+  }
+
+  .indicator-line.active {
+    animation: indicator-line 0.5s ease infinite;
+    animation-delay: calc(var(--animation-order) * 0.1s);
+  }
+
+  @keyframes indicator-line {
+    0% {
+      height: 4px;
+      transform: translateY(-0px);
+    }
+    50% {
+      height: 16px;
+      transform: translateY(-4px);
+    }
+    100% {
+      height: 4px;
+      transform: translateY(-0px);
+    }
+  }
+  .fade-loader {
+    animation: fadeOut 0.5s ease forwards;
+    animation-delay: 1.2s;
+  }
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+}
+
+@utility flex-center {
+  
+    @apply flex items-center justify-center;
+}
+
+@layer components {
+
+nav{
+  @apply fixed h-[92.5dvh] w-[95dvw] flex justify-between;
+  ul{
+    @apply flex-center gap-5;
+    list-style: none;
+    }
+  /* div{
+    @apply 
+  } */
+  li{
+    @apply font-ibm text-white uppercase p-0;
+  }
+  a {
+      @apply cursor-pointer text-nowrap text-[8px] md:text-[10px] hover:text-black;
+    }
+}
+
+}
